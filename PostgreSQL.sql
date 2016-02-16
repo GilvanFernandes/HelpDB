@@ -28,7 +28,7 @@ select setval('rhipe_rh14_sequencia_seq', (select max(rh14_sequencia) from rhipe
 
 select fc_startsession();                                                                                            (Monta todos os schema da base)
 
-create database base_financeiro template <nome-da-base-base>;                                                     (Criar template da base)
+create database base_financeiro template <nome-da-base-base>;                                                        (Criar template da base)
 
 copy bensbage from '/<caminho>/<nome-do-arquivo>.csv' delimiter '|';                                                 (Importa os arquivos com delimitador) 
 
@@ -46,4 +46,4 @@ pg_restore -U postgres -d <nome-da-base> /var/www/taquari_20141230.pgbkp        
 
 pg_dump dbname -h localhost -U postgres > backup.sql                                                                 (Dump de uma base)
 
-pg_dump -U postgres --schema migracao_pessoal_camara jaguarao_estrutura > /home/usuarios/jaguarao_schema2.sql        (Dump de schema especifico)
+pg_dump -U postgres --schema migracao_pessoal schema_estrutura > /home/usuarios/schema2.sql                          (Dump de schema especifico)
