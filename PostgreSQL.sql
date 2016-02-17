@@ -47,3 +47,9 @@ pg_restore -U postgres -d <nome-da-base> /var/www/taquari_20141230.pgbkp        
 pg_dump dbname -h localhost -U postgres > backup.sql                                                                 (Dump de uma base)
 
 pg_dump -U postgres --schema migracao_pessoal schema_estrutura > /home/usuarios/schema2.sql                          (Dump de schema especifico)
+
+-- Verificar tipo de enconding de entrada de informacao que banco aceita
+show client_encoding ;
+
+-- Alterar tipo de encondin que banco vai aceitar na entrada da informacao
+set client_encoding = 'LATIN1' ;
