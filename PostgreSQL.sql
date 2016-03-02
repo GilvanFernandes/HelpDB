@@ -53,3 +53,6 @@ show client_encoding ;
 
 -- Alterar tipo de encondin que banco vai aceitar na entrada da informacao
 set client_encoding = 'LATIN1' ;
+
+
+select * from pg_proc where proname = 'fc_rhpesbanco_trigger';                                                       (Mostra a estrutura da trigger)
