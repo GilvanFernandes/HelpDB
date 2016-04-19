@@ -170,3 +170,14 @@ INNER JOIN pg_stat_user_tables c ON a.attrelid = c.relid
        AND NOT a.attisdropped
   ORDER BY c.relname,
            a.attname
+
+-- Substituir todos os caracteres semelhantes
+SELECT TRANSLATE(string, velho, novo);
+SELECT TRANSLATE('Brasil', 'il', 'ão'); -- Retorna Brasão
+SELECT TRANSLATE('Brasileiro', 'eiro', 'eira');           
+
+
+--Gerando um relatório em HTML diretamente através do PostgreSQL
+\o relatorio.html
+SELECT * FROM cep_tabela WHERE uf='CE';
+--Obs.: Lembre que o PostgreSQL é case sensitive.
