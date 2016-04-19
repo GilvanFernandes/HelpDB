@@ -181,3 +181,5 @@ SELECT TRANSLATE('Brasileiro', 'eiro', 'eira');
 \o relatorio.html
 SELECT * FROM cep_tabela WHERE uf='CE';
 --Obs.: Lembre que o PostgreSQL é case sensitive.
+
+
