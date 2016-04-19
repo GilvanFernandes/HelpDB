@@ -74,6 +74,9 @@ show client_encoding ;
 --Alterar tipo de encondin que banco vai aceitar na entrada da informacao
 set client_encoding = 'LATIN1' ;
 
+-- Autocompletar com tecla tab
+UPDATE pg_proc SET procost = 10 WHERE proname ~ 'is_visible';
+
 --Mostra a estrutura da funcao/trigger
 select * from pg_proc where proname = 'nome_da_funcao_trigger';                                                       
 
