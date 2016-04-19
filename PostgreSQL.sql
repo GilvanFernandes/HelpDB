@@ -1,58 +1,78 @@
-psql                                                                                                                 (Entrar banco)
-                    
--l                                                                                                                   (Lista todas as bases)
+--Entrar banco
+psql                                                                                                                 
 
--U <nome-usuario>                                                                                                    (Parâmetro: Nome usuário)
+--Lista todas as bases
+psql -l            
 
-d                                                                                                                    (Lista tabelas, índices, sequências ou views)
+--Parâmetro: Nome usuário
+psql -U <nome-usuario>
 
-\d nometabela                                                                                                        (Mostra estrutura da tabela)
 
-\dt                                                                                                                  (lista tabelas)
+--Mostra estrutura da tabela
+\d nometabela
 
-\di                                                                                                                  (Lista indices)
+--Lista tabelas
+\dt
 
-\ds                                                                                                                  (Lista sequências)
+--Lista indices
+\di
 
-\dv                                                                                                                  (Lista views)
+--Lista sequências
+\ds
 
-\?                                                                                                                   (Ajuda geral dos comandos do psql)
+--Lista views
+\dv
 
-\ c nome-da-base                                                                                                     (Conectar na base)
+--Ajuda geral dos comandos do psql
+\?
 
-\df+                                                                                                                 (Mostrar as funcões)
+--Conectar na base
+\ c nome-da-base
 
-select * from tabela_campos-da-sequencia_seq                                                                         (Vai saber quem ultima sequencia)
+--Mostrar as funcões
+\df+
 
-select setval('rhipe_rh14_sequencia_seq', (select max(rh14_sequencia) from rhipe)::integer);                         (Concertar as sequencia)
+--Vai saber quem ultima sequencia
+select * from tabela_campos-da-sequencia_seq                                                                         
 
-select fc_startsession();                                                                                            (Monta todos os schema da base)
+--Concertar as sequencia
+select setval('nome da sequence', (select max(campo do sequencial) from tabela)::integer);
 
-create database base_financeiro template <nome-da-base-base>;                                                        (Criar template da base)
+--Criar template da base
+create database nome_da_base_nova template base_de_origem;
 
-copy bensbage from '/<caminho>/<nome-do-arquivo>.csv' delimiter '|';                                                 (Importa os arquivos com delimitador) 
+--Importa os arquivos com delimitador)
+copy bensbage from '/<caminho>/<nome-do-arquivo>.csv' delimiter '|';                                                 
 
-copy () to '/home/usuarios/teste.csv' with delimiter ';';                                                            (Exporta dados da base para algum arquivo)
-           
-select * from pg_stat_activity;                                                                                      (Lista os processos rolando)
+--Exporta dados da base para algum arquivo
+copy () to '/home/usuarios/teste.csv' with delimiter ';';
 
-select * from pg_terminate_backend(PID do processo);                                                                 (Matar o processo)
+--Lista os processos rolando
+select * from pg_stat_activity;
 
-pg_dump -U postgres -h <host> <base> -t <tabela> --inserts > /<nome>.sql                                             (Dump de uma tabela)
+--Matar o processo
+select * from pg_terminate_backend(PID do processo);
 
-pg_restore -U usuario -h ip_servidor -a -t tabela_especifica -d nome_do_banco arquivo.dump                           (Rastaurar uma tabela especifica)
+--Dump de uma tabela com insert
+pg_dump -U postgres -h <host> <base> -t <tabela> --inserts > /<nome>.sql                                             
 
-pg_restore -U postgres -d <nome-da-base> /var/www/taquari_20141230.pgbkp                                              (Restautar uma base inteira)
+--Rastaurar uma tabela especifica
+pg_restore -U usuario -h ip_servidor -a -t tabela_especifica -d nome_do_banco arquivo.dump                           
 
-pg_dump dbname -h localhost -U postgres > backup.sql                                                                 (Dump de uma base)
+--Restautar uma base inteira
+pg_restore -U postgres -d <nome-da-base> /var/www/nome_do_arquivo.pgbkp                                              
 
-pg_dump -U postgres --schema migracao_pessoal schema_estrutura > /home/usuarios/schema2.sql                          (Dump de schema especifico)
+--Dump de uma base
+pg_dump dbname -h localhost -U postgres > backup.sql                                                                 
 
--- Verificar tipo de enconding de entrada de informacao que banco aceita
+--Dump de schema especifico
+pg_dump -U postgres --schema nome_do_schema schema_estrutura > /home/usuarios/schema2.sql                          
+
+--Verificar tipo de enconding de entrada de informacao que banco aceita
 show client_encoding ;
 
--- Alterar tipo de encondin que banco vai aceitar na entrada da informacao
+--Alterar tipo de encondin que banco vai aceitar na entrada da informacao
 set client_encoding = 'LATIN1' ;
 
-
-select * from pg_proc where proname = 'fc_rhpesbanco_trigger';                                                       (Mostra a estrutura da trigger)
+--Mostra a estrutura da funcao/trigger
+select * from pg_proc where proname = 'nome_da_funcao_trigger';                                                       
