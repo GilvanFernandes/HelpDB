@@ -33,7 +33,7 @@ psql -U <nome-usuario>
 \df+
 
 --Vai saber quem ultima sequencia
-select * from tabela_campos-da-sequencia_seq                                                                         
+select * from tabela_campos_da_sequencia_seq                                                                         
 
 --Concertar as sequencia
 select setval('nome da sequence', (select max(campo do sequencial) from tabela)::integer);
@@ -183,3 +183,23 @@ SELECT * FROM cep_tabela WHERE uf='CE';
 --Obs.: Lembre que o PostgreSQL é case sensitive.
 
 
+-- EXCLUIR PRIMARY KEY E CRIAR
+ALTER TABLE pessoal.gerfsal DROP CONSTRAINT gerfsal_ae_me_reg_rub_pd_pk;
+ALTER TABLE ONLY gerfsal ADD CONSTRAINT gerfsal_ae_me_reg_rub_pd_pk PRIMARY KEY (r14_anousu, r14_mesusu, r14_regist, r14_rubric, r14_pd);
+
+
+-- Drop um coluna 
+ALTER TABLE <tabela> DROP COLUMN <coluna>;
+
+-- Adiciona uma coluna na tabela
+ALTER TABLE <tabela> ADD COLUMN  <coluna> <tipo>  ;                                                                       
+
+-- Criar index na tabela
+CREATE index <nome_que_referencia_index> on <tabela>(coluna);                                 
+
+
+-- Encontrar valor que falta entre select e except
+(select generate_series(2001, 2010)) except (select unnest(ARRAY[2001,2002,2003,2004,2006,2007,2008,2009,2010]));   
+
+-- Mosta funcao com cabecalho da trigger/funcao
+\sf <nome_da_funcao_trigger>                                              
