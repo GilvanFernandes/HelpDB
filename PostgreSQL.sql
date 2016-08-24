@@ -203,3 +203,9 @@ CREATE index <nome_que_referencia_index> on <tabela>(coluna);
 
 -- Mosta funcao com cabecalho da trigger/funcao
 \sf <nome_da_funcao_trigger>                                              
+
+-- Exporta e mostrar na tela
+pg_dump -h servidor -p 5432 banco -t tabela -i | less
+
+-- Debug todas query
+psql -h servidor -p 5432 banco -E
